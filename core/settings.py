@@ -30,7 +30,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'bairros', 'logradouros', 'pessoas', 'clientes',
-    'organizadores',
+    'organizadores', 'itens',
 ]
 
 MIDDLEWARE = [
