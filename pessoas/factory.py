@@ -3,9 +3,9 @@ from factory import Sequence
 from .models import Pessoa
 
 
-class OrganizadorFactory(DjangoModelFactory):
+class PessoaFactory(DjangoModelFactory):
     class Meta:
         model = Pessoa
 
-    nome = Sequence(lambda n: 'Organizador%d' % n)
+    nome = Sequence(lambda n: 'Pessoa%d' % n)
     sobrenome = Sequence(lambda n: 'Sobrenome%d' % n)
