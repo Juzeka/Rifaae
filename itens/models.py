@@ -20,7 +20,14 @@ class Item(models.Model):
         null=False,
         verbose_name='Quantidade'
     )
+    rifa = models.ForeignKey(
+        'rifas.Rifa',
+        on_delete=models.CASCADE,
+        related_name='rifa',
+        verbose_name='Rifa'
+    )
     # img colocar dps
+    # restantes (property)
 
     def __str__(self):
         return self.nome
