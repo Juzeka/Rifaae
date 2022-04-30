@@ -16,8 +16,8 @@ class Pessoa(models.Model):
     )
     cpf = models.CharField(
         max_length=15,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         unique=True,
         verbose_name='CPF'
     )
@@ -41,6 +41,8 @@ class Pessoa(models.Model):
     logradouro = models.ForeignKey(
         'logradouros.Logradouro',
         on_delete=models.CASCADE,
+        blank=True,
+        null=True,
         related_name='logradouros',
         verbose_name='Logradouro'
     )
