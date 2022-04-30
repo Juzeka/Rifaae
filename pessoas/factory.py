@@ -7,5 +7,5 @@ class OrganizadorFactory(DjangoModelFactory):
     class Meta:
         model = Pessoa
 
-    nome = Sequence(lambda n: 'Cliente%d' % n)
+    nome = Sequence(lambda n: 'Organizador%d' % n)
     sobrenome = Sequence(lambda n: 'Sobrenome%d' % n)
