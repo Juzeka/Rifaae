@@ -28,12 +28,14 @@ class Rifa(models.Model):
     organizador = models.ForeignKey(
         'organizadores.Organizador',
         on_delete=models.PROTECT,
+        blank=False,
+        null=False,
         related_name='organizador',
         verbose_name='Organizador'
     )
     data_sorteio = models.DateField(
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         verbose_name='Data do sorteio'
     )
     data_criacao = models.DateTimeField(
