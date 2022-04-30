@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Logradouro(models.Model):
-    bairro = models.ForeignKey(
-        'bairros.Bairro',
-        on_delete=models.CASCADE,
-        related_name='bairros',
+    bairro = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
         verbose_name='Bairro'
     )
     endereco = models.CharField(

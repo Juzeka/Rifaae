@@ -29,7 +29,7 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
-    'bairros', 'logradouros', 'pessoas', 'clientes',
+    'logradouros', 'pessoas', 'clientes',
     'organizadores', 'itens', 'rifas', 'bilhetes',
 ]
 
