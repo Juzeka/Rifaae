@@ -15,7 +15,6 @@ class Item(models.Model):
         verbose_name='Descrição'
     )
     quantidade = models.IntegerField(
-        max_length=10,
         blank=False,
         null=False,
         verbose_name='Quantidade'
