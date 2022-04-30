@@ -6,7 +6,7 @@ from .models import Rifa
 from organizadores.factory import OrganizadorFactory
 
 
-class BilheteFactory(DjangoModelFactory):
+class RifaFactory(DjangoModelFactory):
     class Meta:
         model = Rifa
 
