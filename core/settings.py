@@ -31,7 +31,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'logradouros', 'pessoas', 'clientes',
     'organizadores', 'itens', 'rifas', 'bilhetes',
-    'dashboard_admin',
+    'dashboard_admin', 'cotas',
 ]
 
 MIDDLEWARE = [
