@@ -1,7 +1,10 @@
+from cotas.services import CotaService
+
+
 class RifaService:
 
     def __init__(self, **kwargs):
-        ...
+        self.rifa = kwargs.get('rifa')
 
-    def criar_associar_cotas(self):
-        ...
+    def associar_cotas(self):
+        CotaService(rifa=self.rifa).criar_cotas()
