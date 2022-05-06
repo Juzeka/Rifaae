@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Cota(models.Model):
-    numero = models.IntegerField(
+    valor = models.IntegerField(
         blank=False,
         null=False,
         verbose_name='Número'
@@ -39,8 +39,8 @@ class Cota(models.Model):
     )
 
     def __str__(self):
-        return 'Cota {}, Rifa {}, Nº Bilhete {}'.format(
-            self.numero, self.rifa, self.bilhete.numero
+        return 'Cota {}, Rifa {}, Bilhete {}'.format(
+            self.valor, self.rifa, self.bilhete
         )
 
 

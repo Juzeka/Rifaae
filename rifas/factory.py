@@ -12,7 +12,7 @@ class RifaFactory(DjangoModelFactory):
 
     titulo = Sequence(lambda n: 'Título%d' % n)
     descricao = Sequence(lambda n: 'Descrição%d' % n)
-    cotas = Sequence(lambda n: int('%d') % n)
-    valor_cota = Sequence(lambda n: Decimal('%d') % n)
+    cotas = Sequence(lambda n: n)
+    valor_cota = Sequence(lambda n: Decimal(n))
     organizador = SubFactory(OrganizadorFactory)
     data_sorteio = datetime.date(year=2022, month=5, day=25)

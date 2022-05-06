@@ -12,4 +12,4 @@ class BilheteFactory(DjangoModelFactory):
     numero = 'ZEX5478910'
     rifa = SubFactory(RifaFactory)
     cliente = SubFactory(ClienteFactory)
-    cotas = Sequence(lambda n,y: '%d,%d' % n % y)
+    cotas = Sequence(lambda n: '%d' % n)

@@ -29,12 +29,14 @@ class Bilhete(models.Model):
         verbose_name='Cotas'
     )
     pago = models.BooleanField(
-        auto_created=False,
+        auto_created=True,
+        default=False,
         editable=True,
         verbose_name='Pago'
     )
     premiado = models.BooleanField(
-        auto_created=False,
+        auto_created=True,
+        default=False,
         editable=True,
         verbose_name='Premiado'
     )
