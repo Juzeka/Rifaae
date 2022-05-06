@@ -36,7 +36,6 @@ class BilheteServiceTestCase(TestCase):
         for number in string.ascii_uppercase:
             numeros = numeros.replace(number, '')
 
-
         self.assertEqual(len(result), 10)
         self.assertTrue(letras.isascii())
         self.assertTrue(numeros.isdigit())
