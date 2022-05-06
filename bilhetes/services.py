@@ -19,11 +19,11 @@ class BilheteService:
 
         return '{}{}'.format(last, first)
 
-    def gerar_parte_letras(self):
+    def gerar_parte_alfabetica(self):
         return ''.join(random.choices(population=string.ascii_uppercase, k=3))
 
     def gerar_numero_bilhete(self):
         return '{}{}'.format(
-            self.gerar_parte_letras(),
+            self.gerar_parte_alfabetica(),
             self.gerar_parte_numerica()
         )

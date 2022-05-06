@@ -17,6 +17,12 @@ class BilheteServiceTestCase(TestCase):
     def setUp(self):
         ...
 
+    def format_replace_variavel(self, variavel, iterador):
+        for iter in iterador:
+            variavel = variavel.replace(iter, '')
+
+        return variavel
+
     @parameterized.expand(INIT_AND)
     def test_gerar_numero(self, inicio, fim):
         result = self.class_service().gerar_numero(inicio, fim)
@@ -24,18 +30,29 @@ class BilheteServiceTestCase(TestCase):
         
         self.assertTrue(is_range)
 
+    def test_gerar_parte_numerica(self):
+        result = self.class_service().gerar_parte_numerica()
+
+        self.assertTrue(self.format_replace_variavel(
+            result, string.ascii_uppercase).isdigit()
+        )
+
+    def test_gerar_parte_alfabetica(self):
+        result = self.class_service().gerar_parte_alfabetica()
+
+        self.assertTrue(self.format_replace_variavel(
+            result, string.digits).isascii()
+        )
+
     def test_gerar_numero_bilhete(self):
         result = self.class_service().gerar_numero_bilhete()
 
         letras = result
         numeros = letras
 
-        for digit in string.digits:
-            letras = letras.replace(digit, '')
-
-        for number in string.ascii_uppercase:
-            numeros = numeros.replace(number, '')
-
-        self.assertEqual(len(result), 10)
-        self.assertTrue(letras.isascii())
-        self.assertTrue(numeros.isdigit())
+        self.assertTrue(self.format_replace_variavel(
+            letras, string.digits).isascii()
+        )
+        self.assertTrue(self.format_replace_variavel(
+            numeros, string.ascii_uppercase).isdigit()
+        )
