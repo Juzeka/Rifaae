@@ -31,7 +31,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'logradouros', 'pessoas', 'clientes',
     'organizadores', 'itens', 'rifas', 'bilhetes',
-    'dashboard_admin', 'cotas',
+    'cotas', 'accounts',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +120,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.User'
