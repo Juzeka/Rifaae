@@ -1,0 +1,62 @@
+{% include '_base.html'%}
+
+{% block title %}Cliente: {{ cliente.nome }}{% endblock%}
+
+{% block main%}
+<div class="container">
+
+    <form class="form-control" action="{% url 'clientes:edit' cliente.pk %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12">
+
+                <div class="form-check">
+                    {{ form.ativo }}
+                    <label class="form-check-label">Ativo</label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            <div class="col">
+                <label class="form-label">{{ form.nome.label }}</label>
+                {{ form.nome }}
+            </div>
+            <div class="col">
+                <label class="form-label">{{ form.sobrenome.label }}</label>
+                {{ form.sobrenome }}
+            </div>
+            <div class="col-2">
+                <label class="form-label">{{ form.cpf.label }}</label>
+                {{ form.cpf }}
+            </div>
+        </div>
+
+        <div class="row pt-2">
+
+            <div class="col-3">
+                <label class="form-label">{{ form.celular.label }}</label>
+                {{ form.celular }}
+            </div>
+
+            <div class="col">
+                <label class="form-label">{{ form.email.label }}</label>
+                {{ form.email }}
+            </div>
+
+            <div class="col-5">
+                <label class="form-label">{{ form.logradouro.label }}</label>
+                {{ form.logradouro }}
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            <div class="col">
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

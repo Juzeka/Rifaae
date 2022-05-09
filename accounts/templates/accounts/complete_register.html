@@ -1,0 +1,90 @@
+{% block form%}
+<div class="container">
+    <div class="row">
+        <h3 class="col-10">Continuar cadastro</h3>
+    </div>
+
+    <form class="form-control" action="{% url destino %}" method="POST">
+        {% csrf_token %}
+
+        <div class="row pt-2">
+            <div class="col">
+                <label class="form-label">{{ form.nome.label }}</label>
+                {{ form.nome }}
+            </div>
+            <div class="col">
+                <label class="form-label">{{ form.sobrenome.label }}</label>
+                {{ form.sobrenome }}
+            </div>
+            <div class="col-2">
+                <label class="form-label">{{ form.cpf.label }}</label>
+                {{ form.cpf }}
+            </div>
+        </div>
+
+        <div class="row pt-2">
+
+            <div class="col-3">
+                <label class="form-label">{{ form_pessoa.celular.label }}</label>
+                {{ form_pessoa.celular }}
+            </div>
+
+            <div class="col">
+                <label class="form-label">{{ form_pessoa.email.label }}</label>
+                {{ form_pessoa.email }}
+            </div>
+
+        </div>
+
+        <div class="row pt-2">
+            <div class="col">
+                <label class="form-label">{{ form_logradouro.bairro.label }}</label>
+                {{ form_logradouro.bairro }}
+            </div>
+            <div class="col">
+                <label class="form-label">{{ form_logradouro.endereco.label }}</label>
+                {{ form_logradouro.endereco }}
+            </div>
+            <div class="col">
+                <label class="form-label">{{ form_logradouro.numero.label }}</label>
+                {{ form_logradouro.numero }}
+            </div>
+            <div class="col">
+                <label class="form-label">{{ form_logradouro.cep.label }}</label>
+                {{ form_logradouro.cep }}
+            </div>
+            <div class="col">
+                <label class="form-label">{{ form_logradouro.complemento.label }}</label>
+                {{ form_logradouro.complemento }}
+            </div>
+        </div>
+        <div class="row pt-2">
+
+            <div class="col">
+                <label class="form-label">Selecione o perfil desejado</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="escolha"  value="1" checked>
+                    <label class="form-check-label">
+                        Cliente
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="escolha" value="0">
+                    <label class="form-check-label">
+                        Organizador
+                    </label>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row pt-2">
+            <div class="col">
+                <button class="btn btn-primary" type="submit">Salvar</button>
+                <a class="btn btn-danger" href="{% url 'clientes:home' %}">Cancelar</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

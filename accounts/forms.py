@@ -1,8 +1,10 @@
 from django.contrib.auth import forms
+from django import forms as forms_django
+
 from .models import User
 
 
-class LoginForm(forms.Form):
+class LoginForm(forms_django.ModelForm):
     class Meta:
         model = User
         fields = '__all__'

@@ -1,0 +1,24 @@
+<form action="{% url 'clientes:delete' cliente.pk %}" method="POST">
+    {% csrf_token %}
+
+    <div class="modal fade" id="modal_deletar{{cliente.pk}}" tabindex="-1" aria-labelledby="modal_deletar_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="modal_deletar_label"><i class="bi bi-exclamation-circle"></i> Atenção</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Deseja deletar <strong>{{cliente.nome}} {{cliente.sobrenome}}</strong>?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

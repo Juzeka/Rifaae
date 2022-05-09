@@ -2,6 +2,14 @@ from django.db import models
 
 
 class Pessoa(models.Model):
+    usuario = models.ForeignKey(
+        'accounts.User',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name='Usuário',
+        related_name='cliente'
+    )
     nome = models.CharField(
         max_length=50,
         blank=False,
@@ -50,6 +58,11 @@ class Pessoa(models.Model):
         auto_created=True,
         default=True,
         verbose_name='Usuário Ativo'
+    )
+    primeiro_acesso = models.BooleanField(
+        auto_created=True,
+        default=True,
+        verbose_name='Primero acesso'
     )
 
     def __str__(self):

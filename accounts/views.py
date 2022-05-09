@@ -1,7 +1,15 @@
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin #importante para as views
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView, LogoutView
 from proxys.redirection import UserRedirection
+from .forms import User, UserCreationForm
+
+
+class UserCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    template_name = 'accounts/add.html'
+    success_url = reverse_lazy('pessoas:completar_cadastro')
 
 
 class LoginView(LoginView):

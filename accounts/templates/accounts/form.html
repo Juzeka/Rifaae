@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block title %}Novo usuário{% endblock %}
+
+{% block main %}
+
+    <h1>Novo usuário</h1>
+    <form action="{% url 'accounts:new_user' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Criar conta</button>
+    </form>
+
+{% endblock %}
