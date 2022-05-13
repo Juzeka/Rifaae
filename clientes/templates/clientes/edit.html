@@ -2,7 +2,7 @@
 
 {% block title %}Cliente: {{ cliente.nome }}{% endblock%}
 
-{% block main%}
+{% block body%}
 <div class="container">
 
     <form class="form-control" action="{% url 'clientes:edit' cliente.pk %}" method="POST">
