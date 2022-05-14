@@ -14,6 +14,7 @@ SUCCESS_URL_HOME = reverse_lazy('clientes:home')
 
 
 class ClienteHomeView(CustomHomeView):
+    # required_permission = ['view_cliente']
     template_name = 'clientes/home.html'
 
 

@@ -30,10 +30,14 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
+    "allauth", "allauth.account", "allauth.socialaccount",
+    'crispy_forms','rolepermissions',
+]
+
+INSTALLED_APPS += [
     'logradouros', 'pessoas', 'clientes',
     'organizadores', 'itens', 'rifas', 'bilhetes',
-    'cotas', 'accounts', "allauth", "allauth.account",
-    "allauth.socialaccount", 'crispy_forms',
+    'cotas', 'accounts',
 ]
 
 MIDDLEWARE = [
@@ -126,8 +130,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTH_USER_MODEL = 'accounts.User'
+ROLEPERMISSIONS_MODULE = 'accounts.roles'
 
-LOGIN_REDIRECT_URL = 'clientes:home'
+# LOGIN_REDIRECT_URL = 'clientes:home'
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
