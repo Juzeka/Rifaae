@@ -129,10 +129,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-AUTH_USER_MODEL = 'accounts.User'
+# AUTH_USER_MODEL = 'accounts.User'
 ROLEPERMISSIONS_MODULE = 'accounts.roles'
 
-# LOGIN_REDIRECT_URL = 'clientes:home'
+LOGIN_REDIRECT_URL = 'clientes:home'
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
@@ -140,7 +140,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 SITE_ID = 1
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-# LOGIN_REDIRECT_URL = "/"
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_USERNAME_REQUIRED = False

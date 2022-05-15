@@ -1,7 +1,6 @@
 from django.urls import reverse_lazy
 from rolepermissions.roles import assign_role
 from allauth.account.views import LoginView, SignupView, TemplateView
-from .forms import User, UserCreationForm
 
 
 class LoginView(LoginView):

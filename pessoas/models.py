@@ -2,14 +2,6 @@ from django.db import models
 
 
 class Pessoa(models.Model):
-    usuario = models.ForeignKey(
-        'accounts.User',
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        verbose_name='Usuário',
-        related_name='cliente'
-    )
     nome = models.CharField(
         max_length=50,
         blank=False,

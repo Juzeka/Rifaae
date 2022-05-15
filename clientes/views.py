@@ -27,7 +27,7 @@ class ClienteListView(CustomListView):
 class ClienteCreateView(CustomCreateView):
     model = Cliente
     form_class = ClienteForm
-    template_name = 'clientes/form.html'#mudar depois pra um template de add
+    template_name = 'clientes/add.html'#mudar depois pra um template de add
     success_url = SUCCESS_URL_HOME
 
 
