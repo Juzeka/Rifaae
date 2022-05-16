@@ -48,12 +48,9 @@
                         <div class="card-body">
                             <h5 class="card-title">
                                 Logradouro
-                                {% if cliente.logradouro %}
-                                <a href="{% url 'logradouros:edit' cliente.logradouro.pk %}" class="">
+                                <a href="" class="">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                {% endif %}
-
                             </h5>
 
                             {% if cliente.logradouro %}
@@ -70,7 +67,7 @@
                                 <p class="card-text">{{ cliente.logradouro.celular }}</p>
 
                             {% else %}
-                                <p>Cadastre <a href="{% url 'logradouros:add' %}" class="">aqui</a> seu logradouro!</p>
+                                <p>Você não possuí um logradouro cadastrado!</p>
                             {% endif %}
 
                         </div>

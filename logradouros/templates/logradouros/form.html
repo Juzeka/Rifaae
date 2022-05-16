@@ -1,0 +1,54 @@
+{% extends '_base.html'%}
+
+{% block title %}Painel Administrativo{% endblock%}
+
+{% block nav %}
+    {% include 'menu.html' %}
+{% endblock %}
+
+{% block body%}
+<div class="container">
+    <div class="row pt-4">
+        <h3 class="col-10">Logradouro</h3>
+    </div>
+    <form class="" action="{% url 'logradouros:add' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="row pt-2">
+            <div class="col">
+                <label class="">{{ form.nome.bairro.label }}</label>
+                {{ form.bairro }}
+            </div>
+            <div class="col">
+                <label class="">{{ form.endereco.label }}</label>
+                {{ form.endereco }}
+            </div>
+            <div class="col-2">
+                <label class="">{{ form.numero.label }}</label>
+                {{ form.numero }}
+            </div>
+        </div>
+
+        <div class="row pt-2">
+
+            <div class="col-3">
+                <label class="">{{ form.cep.label }}</label>
+                {{ form.cep }}
+            </div>
+
+            <div class="col">
+                <label class="">{{ form.complemento.label }}</label>
+                {{ form.complemento }}
+            </div>
+
+        </div>
+
+        <div class="row pt-2">
+            <div class="col">
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

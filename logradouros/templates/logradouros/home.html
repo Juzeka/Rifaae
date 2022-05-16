@@ -1,0 +1,69 @@
+{% extends '_base.html'%}
+
+{% block title%}Painel administrativo{% endblock %}
+
+{% block nav %}
+    {% include 'menu.html' %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row pt-4">
+        <div class="col">
+            <h2>Rifas</h2>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-1 row-cols-xl-2 "><!-- row-cols já define os padroes das cols -->
+        <div class="col pt-4">
+            <div class="card h-100">
+                <img src="https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Titulo</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Sub titulo</h6>
+                    <p class="card-text">Descrição Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Participar</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        Data do sorteio: 10/05/2022
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col pt-4">
+            <div class="card h-100">
+                <img src="https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Titulo</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Sub titulo</h6>
+                    <p class="card-text">Descrição Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Participar</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Data do sorteio: 10/05/2022</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col pt-4">
+            <div class="card h-100">
+                <img src="https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Titulo</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Sub titulo</h6>
+                    <p class="card-text">Descrição Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Participar</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Data do sorteio: 10/05/2022</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
