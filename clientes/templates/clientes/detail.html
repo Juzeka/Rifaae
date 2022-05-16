@@ -1,4 +1,81 @@
-{% include '_base.html'%}
+{% extends '_base.html'%}
+{% block nav %}
+    {% include 'menu.html' %}
+{% endblock %}
 
-<title>Cliente: {{ cliente.nome }}</title>
-ID: {{ cliente.pk }} | Nome: {{ cliente.nome}}
+{% block body %}
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-4">
+            <!-- --------------- -->
+            <div class="card">
+                <img src="https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png" class="card-img-top" alt="...">
+            </div>
+        </div>
+
+        
+        <div class="col">
+            <div class="row row-cols-1 row-cols-md-1 row-cols-xl-1 ">
+                <div class="col">
+
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Informações Pessoais
+                                <a href="{% url 'clientes:edit' cliente.pk %}" class="">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </h5>
+                            <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
+                            <p class="card-text">{{ cliente.nome }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
+                            <p class="card-text">{{ cliente.sobrenome }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
+                            <p class="card-text">{{ cliente.cpf }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
+                            <p class="card-text">{{ cliente.email }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
+                            <p class="card-text">{{ cliente.celular }}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col pt-4">
+
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Logradouro
+                                <a href="" class="">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </h5>
+
+                            {% if cliente.logradouro %}
+
+                                <h6 class="card-subtitle mb-1 text-muted">CEP</h6>
+                                <p class="card-text">{{ cliente.logradouro.cep }}</p>
+                                <h6 class="card-subtitle mb-1 text-muted">Bairro</h6>
+                                <p class="card-text">{{ cliente.logradouro.bairro }}</p>
+                                <h6 class="card-subtitle mb-1 text-muted">Endereço</h6>
+                                <p class="card-text">{{ cliente.logradouro.endereco }}</p>
+                                <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
+                                <p class="card-text">{{ cliente.logradouro.email }}</p>
+                                <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
+                                <p class="card-text">{{ cliente.logradouro.celular }}</p>
+
+                            {% else %}
+                                <p>Você não possuí um logradouro cadastrado!</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

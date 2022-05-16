@@ -1,43 +1,9 @@
 {% extends '_base.html'%}
 
 {% block title%}Painel administrativo{% endblock %}
-{% block nav %}
-<nav class="shadow navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'clientes:home' %}">Painel Administrativo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navigation">
-            <div class="navbar-nav mr-auto">
-                <a class="nav-link" href="">Meus bilhetes<span class="sr-only">(current)</span></a>
-            </div>
 
-            <span class="navbar-text">
-                <div class="dropdown text-dash">
-    
-                    <a class="nav-link dropdown-toggle "  id="dropdown_user" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {% if user.is_authenticated %}
-                            Bem-vindo | {{ user.first_name }}
-                        {% else %}
-                            Área do usuário
-                        {% endif %}
-                    </a>
-                    <div class="dropdown-menu text-dash" aria-labelledby="dropdown_user">
-                        <a class="dropdown-item" href="">Perfil {{user.cliente}}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item " href="">Cadastro</a>
-                        <a class="dropdown-item " href="">Entrar</a>
-                        <a class="dropdown-item " href="">Sair</a>
-                    </div>
-                </div>
-            </span>
-        </div>
-        
-    </div>
-</nav>
+{% block nav %}
+    {% include 'menu.html' %}
 {% endblock %}
 
 {% block body %}

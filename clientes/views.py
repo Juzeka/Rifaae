@@ -14,8 +14,15 @@ SUCCESS_URL_HOME = reverse_lazy('clientes:home')
 
 
 class ClienteHomeView(CustomHomeView):
-    # required_permission = ['view_cliente']
     template_name = 'clientes/home.html'
+    extra_context = None
+
+    def get_context_data(self, **kwargs):
+        cliente = self.request.user.cliente.first()
+
+        if cliente:
+            self.extra_context = {'cliente': cliente}
+        return super().get_context_data(**kwargs)
 
 
 class ClienteListView(CustomListView):
