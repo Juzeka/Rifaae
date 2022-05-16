@@ -34,7 +34,7 @@ class ClienteListView(CustomListView):
 class ClienteCreateView(CustomCreateView):
     model = Cliente
     form_class = ClienteForm
-    template_name = 'clientes/add.html'#mudar depois pra um template de add
+    template_name = 'clientes/add.html'
     success_url = SUCCESS_URL_HOME
 
 
@@ -43,14 +43,19 @@ class ClienteUpdateView(CustomUpdateView):
     form_class = ClienteForm
     context_object_name = CONTEXT_OBJECT_NAME
     template_name = 'clientes/edit.html'
-    success_url = SUCCESS_URL_HOME
 
     def get_queryset(self):
-        return Cliente.objects.all()
+        return Cliente.objects.filter(ativo=True)
+
+    def form_valid(self, form):
+        self.success_url = '/clientes/detail/{}'.format(self.get_object().pk)
+
+        return super().form_valid(form)
 
 
 class ClienteDetailView(CustomDetailView):
     model = Cliente
+    form_class = ClienteForm
     context_object_name = CONTEXT_OBJECT_NAME
     template_name = 'clientes/detail.html'
 

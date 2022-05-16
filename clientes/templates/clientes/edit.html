@@ -1,62 +1,54 @@
-{% include '_base.html'%}
+{% extends '_base.html'%}
 
-{% block title %}Cliente: {{ cliente.nome }}{% endblock%}
+{% block nav %}
+    {% include 'menu.html' %}
+{% endblock %}
+
+{% block title %}Painel Administrativo{% endblock%}
 
 {% block body%}
 <div class="container">
-
-    <form class="form-control" action="{% url 'clientes:edit' cliente.pk %}" method="POST">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-12">
-
-                <div class="form-check">
-                    {{ form.ativo }}
-                    <label class="form-check-label">Ativo</label>
+    <div class="container pt-4">
+        <h4>Informações Pessoais</h4>
+        
+        <form action="{% url 'clientes:edit' cliente.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="usuario" value="{{ user.pk }}" hidden id="id_usuario">
+            <input type="checkbox" name="ativo" id="id_ativo" hidden checked>
+            
+            <div class="form-group row pt-2">
+                <div class="col">
+                    <label class="">{{ form.nome.label }}</label>
+                    <input type="text" name="nome" value="{{ cliente.nome }}" maxlength="50" class="form-control" id="id_nome">
                 </div>
-
+                <div class="col">
+                    <label class="">{{ form.sobrenome.label }}</label>
+                    <input type="text" name="sobrenome" value="{{ cliente.sobrenome }}" maxlength="100" class="form-control" id="id_sobrenome">
+                </div>
             </div>
-        </div>
-
-        <div class="row pt-2">
-            <div class="col">
-                <label class="form-label">{{ form.nome.label }}</label>
-                {{ form.nome }}
+            
+            <div class="form-group row pt-2">
+                <div class="col-2">
+                    <label class="">{{ form.cpf.label }}</label>
+                    <input type="text" name="cpf" value="{{ cliente.cpf }}" maxlength="15" class="form-control" id="id_cpf">
+                </div>
+                <div class="col-3">
+                    <label class="">{{ form.celular.label }}</label>
+                    <input type="text" name="celular" value="{{ cliente.celular }}" maxlength="15" class="form-control" id="id_celular">
+                </div>
+                <div class="col-5">
+                    <label class="">{{ form.email.label }}</label>
+                    <input type="email" name="email" value="{{ cliente.email }}" class="form-control" id="id_email">
+                </div>
+                
             </div>
-            <div class="col">
-                <label class="form-label">{{ form.sobrenome.label }}</label>
-                {{ form.sobrenome }}
+            
+            <div class="row pt-2">
+                <div class="col">
+                    <button class="btn btn-primary" type="submit">Salvar</button>
+                </div>
             </div>
-            <div class="col-2">
-                <label class="form-label">{{ form.cpf.label }}</label>
-                {{ form.cpf }}
-            </div>
-        </div>
-
-        <div class="row pt-2">
-
-            <div class="col-3">
-                <label class="form-label">{{ form.celular.label }}</label>
-                {{ form.celular }}
-            </div>
-
-            <div class="col">
-                <label class="form-label">{{ form.email.label }}</label>
-                {{ form.email }}
-            </div>
-
-            <div class="col-5">
-                <label class="form-label">{{ form.logradouro.label }}</label>
-                {{ form.logradouro }}
-            </div>
-        </div>
-
-        <div class="row pt-2">
-            <div class="col">
-                <button class="btn btn-primary" type="submit">Salvar</button>
-            </div>
-        </div>
-    </form>
-
+        </form>
+    </div>
 </div>
 {% endblock %}

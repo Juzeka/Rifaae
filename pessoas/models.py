@@ -60,6 +60,10 @@ class Pessoa(models.Model):
     def __str__(self):
         return self.nome
 
+    @property
+    def get_nome_completo(self):
+        return '{} {}'.format(self.nome, self.sobrenome)
+
 
     class Meta:
         ordering = ['nome']
