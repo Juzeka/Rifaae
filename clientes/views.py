@@ -22,14 +22,18 @@ class ClienteHomeView(CustomHomeView):
 
         if self.request.user.cliente:
             self.extra_context = {
-                'cliente': self.request.user.cliente.first()
+                'cliente': self.request.user.cliente.first(),
+                'rifas': Rifa.objects.filter(ativo=True)
             }
         elif self.request.user.organizador:
+            organizador = self.request.user.organizador.first()
             self.extra_context = {
-                'organizador': self.request.user.organizador.first()
+                'organizador': organizador,
+                'rifas': Rifa.objects.filter(
+                    organizador=self.request.user.organizador.first()
+                )
             }
 
-        self.extra_context.update({'rifas': Rifa.objects.filter(ativo=True)})
         return super().get_context_data(**kwargs)
 
 
