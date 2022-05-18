@@ -5,6 +5,7 @@ from utils.views.viewsets import (
     CustomDeleteView, CustomHomeView
 )
 from .forms import Cliente, ClienteForm
+from rifas.models import Rifa
 
 
 CONTEXT_OBJECT_NAME = 'cliente'
@@ -15,13 +16,20 @@ SUCCESS_URL_HOME = reverse_lazy('clientes:home')
 
 class ClienteHomeView(CustomHomeView):
     template_name = 'clientes/home.html'
-    extra_context = None
+    extra_context = []
 
     def get_context_data(self, **kwargs):
-        cliente = self.request.user.cliente.first()
 
-        if cliente:
-            self.extra_context = {'cliente': cliente}
+        if self.request.user.cliente:
+            self.extra_context = {
+                'cliente': self.request.user.cliente.first()
+            }
+        elif self.request.user.organizador:
+            self.extra_context = {
+                'organizador': self.request.user.organizador.first()
+            }
+
+        self.extra_context.update({'rifas': Rifa.objects.filter(ativo=True)})
         return super().get_context_data(**kwargs)
 
 

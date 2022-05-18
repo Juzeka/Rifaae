@@ -47,6 +47,11 @@ class Rifa(models.Model):
         blank=True,
         null=True
     )
+    ativo = models.BooleanField(
+        auto_created=True,
+        default=True,
+        verbose_name='Rifa Ativa'
+    )
     #imagem
     # cotas_disponiveis (property)
 

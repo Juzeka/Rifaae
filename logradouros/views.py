@@ -58,8 +58,10 @@ class LogradouroUpdateView(CustomUpdateView):
     def get(self, request, *args, **kwargs):
         if request.user.cliente:
             self.extra_context = {'cliente': request.user.cliente.first()}
-        elif request.user.logradouro:
-            self.extra_context = {'cliente': request.user.logradouro.first()}
+        elif request.user.organizador:
+            self.extra_context = {
+                'organizador': request.user.organizador.first()
+            }
 
         return super().get(request, *args, **kwargs)
 
