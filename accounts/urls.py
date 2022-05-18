@@ -1,13 +1,12 @@
 from django.urls import path, re_path
 from allauth.account import views
-from .views import LoginView, CreateUser,VerificaUser
+from .views import LoginView, CreateUser
 
 
 # app_name = 'accounts'
 
 urlpatterns = [
     path("signup/", CreateUser.as_view(), name="account_signup"),
-    path("teste/", VerificaUser.as_view(), name="teste"),
     path("login/", LoginView.as_view(), name="account_login"),
     path("logout/", views.logout, name="account_logout"),
     path(

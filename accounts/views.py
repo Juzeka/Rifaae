@@ -4,10 +4,7 @@ from allauth.account.views import LoginView, SignupView, TemplateView
 
 
 class LoginView(LoginView):
-
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
+    template_name = 'account/login.html'
 
 class CreateUser(SignupView):
     # success_url = '/accounts/teste/'

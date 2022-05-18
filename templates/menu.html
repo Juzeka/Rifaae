@@ -17,7 +17,12 @@
                     <a class="nav-link dropdown-toggle "  id="dropdown_user" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         {% if user.is_authenticated %}
-                            Bem-vindo | {{ cliente.nome }}
+                            Bem-vindo | 
+                            {% if cliente %}
+                                {{ cliente.nome }}
+                            {% else %}
+                                {{ organizador.nome }} 
+                            {% endif %}
                         {% else %}
                             Área do usuário
                         {% endif %}
@@ -26,12 +31,15 @@
                         {% if cliente %}
                             <a class="dropdown-item" href="{% url 'clientes:detail' cliente.pk %}">Perfil</a>
                             <div class="dropdown-divider"></div>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'oranizadores:detail' oranizadore.pk %}">Perfil</a>
+                            <div class="dropdown-divider"></div>
                         {% endif %}
 
                         {% if not user.is_authenticated %}
                             <a class="dropdown-item" href="">Entrar</a>
                         {% else %}
-                            <a class="dropdown-item " href="">Sair</a>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">Sair</a>
                         {% endif %}
                     </div>
                 </div>
