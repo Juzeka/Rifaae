@@ -55,6 +55,12 @@ class LogradouroUpdateView(CustomUpdateView):
     context_object_name = CONTEXT_OBJECT_NAME
     template_name = 'logradouros/edit.html'
 
+    def get(self, request, *args, **kwargs):
+        if request.user.cliente:
+            self.extra_context = {'cliente': request.user.cliente.first()}
+
+        return super().get(request, *args, **kwargs)
+
     def form_valid(self, form):
         # self.success_url = '/clientes/detail/{}'.format(self.get_object().pk)
         return super().form_valid(form)

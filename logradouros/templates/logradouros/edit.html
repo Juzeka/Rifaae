@@ -7,46 +7,82 @@
 {% block title %}Painel Administrativo{% endblock%}
 
 {% block body%}
-<div class="container">
-    <div class="container pt-4">
-        <h4>Logradouro</h4>
-        
-        <form action="{% url 'logradouros:edit' logradouro.pk %}" method="POST">
-            {% csrf_token %}
-            
-            <div class="form-group row pt-2">
-                <div class="col">
-                    <label class="">{{ form.bairro.label }}</label>
-                    <input type="text" name="bairro" value="{{ logradouro.bairro }}" maxlength="100" class="form-control" id="id_bairro">
+<div class="container pt-4">
+    <h4>Informações Pessoais</h4>
+
+    <div class="row pt-2">
+        <div class="col col-md-3">
+
+            <div class="row">
+                <div class="col pt-2">
+                    <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
+                    <label>{{ cliente.nome }}</label>
                 </div>
-                <div class="col">
-                    <label class="">{{ form.endereco.label }}</label>
-                    <input type="text" name="endereco" value="{{ logradouro.endereco }}" maxlength="200" class="form-control" id="id_endereco">
+                <div class="col pt-2">
+                    <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
+                    <label>{{ cliente.sobrenome }}</label>
                 </div>
             </div>
-            
-            <div class="form-group row pt-2">
-                <div class="col-2">
-                    <label class="">{{ form.numero.label }}</label>
-                    <input type="text" name="numero" value="{{ logradouro.numero }}" maxlength="6" class="form-control" id="id_numero">
+
+            <div class="row pb-4">
+                <div class="col pt-2">
+                    <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
+                    <span>{{ cliente.cpf }}</span>
                 </div>
-                <div class="col-3">
-                    <label class="">{{ form.cep.label }}</label>
-                    <input type="text" name="cep" value="{{ logradouro.cep }}" maxlength="9" class="form-control" id="id_cep">
+
+                <div class="col pt-2">
+                    <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
+                    <span>{{ cliente.celular }}</span>
                 </div>
-                <div class="col-5">
-                    <label class="">{{ form.complemento.label }}</label>
-                    <input type="text" name="complemento" id="id_complemento" class="form-control">
+                
+                <div class="col pt-2">
+                    <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
+                    <span>{{ cliente.email }}</span>
                 </div>
                 
             </div>
-            
-            <div class="row pt-2">
-                <div class="col">
-                    <button class="btn btn-primary" type="submit">Salvar</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
+
+    
+
+    <h4>Logradouro</h4>
+    
+    <form action="{% url 'logradouros:edit' logradouro.pk %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group row pt-2">
+            <div class="col">
+                <label class="">{{ form.bairro.label }}</label>
+                <input type="text" name="bairro" value="{{ logradouro.bairro }}" maxlength="100" class="form-control" id="id_bairro">
+            </div>
+            <div class="col">
+                <label class="">{{ form.endereco.label }}</label>
+                <input type="text" name="endereco" value="{{ logradouro.endereco }}" maxlength="200" class="form-control" id="id_endereco">
+            </div>
+        </div>
+        
+        <div class="form-group row pt-2">
+            <div class="col-2">
+                <label class="">{{ form.numero.label }}</label>
+                <input type="text" name="numero" value="{{ logradouro.numero }}" maxlength="6" class="form-control" id="id_numero">
+            </div>
+            <div class="col-3">
+                <label class="">{{ form.cep.label }}</label>
+                <input type="text" name="cep" value="{{ logradouro.cep }}" maxlength="9" class="form-control" id="id_cep">
+            </div>
+            <div class="col-5">
+                <label class="">{{ form.complemento.label }}</label>
+                <input type="text" name="complemento" id="id_complemento" class="form-control">
+            </div>
+            
+        </div>
+        
+        <div class="row pt-2">
+            <div class="col">
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock %}

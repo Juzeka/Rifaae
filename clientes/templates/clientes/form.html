@@ -1,4 +1,4 @@
-{% extends '_base.html'%}
+<!-- {% extends '_base.html'%}
 
 {% block title %}Novo{% endblock%}
 
@@ -62,4 +62,30 @@
     </form>
 
 </div>
-{% endblock %}
+{% endblock %} -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#id_modal1">
+    Novo
+</button>
+
+<div class="modal fade" id="id_modal1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="btn_modal1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="btn_modal1">Nasasd</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="" method="POST">
+                <div class="modal-body">
+                    teste
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Adcionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
