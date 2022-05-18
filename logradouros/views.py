@@ -5,6 +5,8 @@ from utils.views.viewsets import (
     CustomDeleteView, CustomHomeView
 )
 from .forms import Logradouro, LogradouroForm
+from clientes.models import Cliente
+from organizadores.models import Organizador
 
 
 CONTEXT_OBJECT_NAME = 'logradouro'
@@ -29,6 +31,23 @@ class LogradouroCreateView(CustomCreateView):
     template_name = 'logradouros/add.html'
     success_url = SUCCESS_URL_HOME
 
+    def form_valid(self, form):
+        user = self.request.user
+        super().form_valid(form)
+
+        if user.cliente and not user.cliente.first().logradouro:
+            cliente = Cliente.objects.get(pk=user.cliente.first().pk)
+            cliente.logradouro = self.object
+            cliente.save()
+
+            self.success_url = '/clientes/detail/{}'.format(
+                cliente.pk
+            )
+        elif user.organizador:
+            ...
+
+        return super().form_valid(form)
+
 
 class LogradouroUpdateView(CustomUpdateView):
     model = Logradouro
@@ -38,7 +57,6 @@ class LogradouroUpdateView(CustomUpdateView):
 
     def form_valid(self, form):
         # self.success_url = '/clientes/detail/{}'.format(self.get_object().pk)
-
         return super().form_valid(form)
 
 

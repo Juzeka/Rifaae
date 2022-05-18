@@ -11,7 +11,7 @@
     <div class="container pt-4">
         <h4>Logradouro</h4>
         
-        <form action="{% url 'logradouros:edit' cliente.pk %}" method="POST">
+        <form action="{% url 'logradouros:edit' logradouro.pk %}" method="POST">
             {% csrf_token %}
             
             <div class="form-group row pt-2">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-5">
                     <label class="">{{ form.complemento.label }}</label>
-                    <textarea name="complemento" id="id_complemento" cols="30" rows="10"></textarea>
+                    <input type="text" name="complemento" id="id_complemento" class="form-control">
                 </div>
                 
             </div>

@@ -1,54 +1,57 @@
-{% extends '_base.html'%}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#id_modal">
+    Novo
+</button>
 
-{% block title %}Painel Administrativo{% endblock%}
+<div class="modal fade" id="id_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="btn_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
 
-{% block nav %}
-    {% include 'menu.html' %}
-{% endblock %}
+            <div class="modal-header">
+                <h5 class="modal-title" id="btn_modal">Novo Logradouro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-{% block body%}
-<div class="container">
-    <div class="row pt-4">
-        <h3 class="col-10">Logradouro</h3>
+            <form action="{% url 'logradouros:add' %}" method="POST">
+                <div class="modal-body">
+
+                    {% csrf_token %}
+
+                    <div class="form-row">
+                        <div class="col-3">
+                            <label class="">CEP</label>
+                            <input class="form-control" type="text" name="cep" maxlength="9" id="id_cep">
+                        </div>
+                        <div class="col">
+                            <label class="">Bairro</label>
+                            <input class="form-control" type="text" name="bairro" maxlength="100" id="id_bairro">
+                        </div>
+                        <div class="col-12">
+                            <label class="">Endereço</label>
+                            <input class="form-control" type="text" name="endereco" maxlength="200" required="" id="id_endereco">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2">
+                            <label class="">Número</label>
+                            <input class="form-control" type="text" name="numero" maxlength="6" required="" id="id_numero">
+                        </div>
+
+                        <div class="col">
+                            <label>Complemento</label>
+                            <input class="form-control" type="text" name="complemento" maxlength="200" id="id_complemento">
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Adcionar</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <form class="" action="{% url 'logradouros:add' %}" method="POST">
-        {% csrf_token %}
-
-        <div class="row pt-2">
-            <div class="col">
-                <label class="">{{ form.nome.bairro.label }}</label>
-                {{ form.bairro }}
-            </div>
-            <div class="col">
-                <label class="">{{ form.endereco.label }}</label>
-                {{ form.endereco }}
-            </div>
-            <div class="col-2">
-                <label class="">{{ form.numero.label }}</label>
-                {{ form.numero }}
-            </div>
-        </div>
-
-        <div class="row pt-2">
-
-            <div class="col-3">
-                <label class="">{{ form.cep.label }}</label>
-                {{ form.cep }}
-            </div>
-
-            <div class="col">
-                <label class="">{{ form.complemento.label }}</label>
-                {{ form.complemento }}
-            </div>
-
-        </div>
-
-        <div class="row pt-2">
-            <div class="col">
-                <button class="btn btn-primary" type="submit">Salvar</button>
-            </div>
-        </div>
-    </form>
-
 </div>
-{% endblock %}
