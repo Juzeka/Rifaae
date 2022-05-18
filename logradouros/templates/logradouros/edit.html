@@ -8,115 +8,122 @@
 
 {% block body%}
 <div class="container pt-4">
-    <h4>Informações Pessoais</h4>
+    <div class="row">
+        <div class="col-12 col-md-5">
+            <h4>Informações Pessoais</h4>
 
-    {% if cliente %}
-        <div class="row pt-2">
-            <div class="col col-md-3">
-
+            {% if cliente %}
                 <div class="row">
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
-                        <label>{{ cliente.nome }}</label>
-                    </div>
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
-                        <label>{{ cliente.sobrenome }}</label>
+                    <div class="col col-md-4">
+
+                        <div class="row">
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
+                                <label>{{ cliente.nome }}</label>
+                            </div>
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
+                                <label>{{ cliente.sobrenome }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
+                                <span>{{ cliente.cpf }}</span>
+                            </div>
+
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
+                                <span>{{ cliente.celular }}</span>
+                            </div>
+                            
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
+                                <span>{{ cliente.email }}</span>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
-
-                <div class="row pb-4">
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
-                        <span>{{ cliente.cpf }}</span>
-                    </div>
-
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
-                        <span>{{ cliente.celular }}</span>
-                    </div>
-                    
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
-                        <span>{{ cliente.email }}</span>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    {% elif organizador %}
-        <div class="row pt-2">
-            <div class="col col-md-3">
-
+            {% elif organizador %}
                 <div class="row">
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
-                        <label>{{ organizador.nome }}</label>
-                    </div>
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
-                        <label>{{ organizador.sobrenome }}</label>
+                    <div class="col col-md-4">
+
+                        <div class="row">
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
+                                <label>{{ organizador.nome }}</label>
+                            </div>
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
+                                <label>{{ organizador.sobrenome }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
+                                <span>{{ organizador.cpf }}</span>
+                            </div>
+
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
+                                <span>{{ organizador.celular }}</span>
+                            </div>
+
+                            <div class="col pt-2">
+                                <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
+                                <span>{{ organizador.email }}</span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-
-                <div class="row pb-4">
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
-                        <span>{{ organizador.cpf }}</span>
-                    </div>
-
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
-                        <span>{{ organizador.celular }}</span>
-                    </div>
-
-                    <div class="col pt-2">
-                        <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
-                        <span>{{ organizador.email }}</span>
-                    </div>
-
-                </div>
-            </div>
+            {% endif %}
         </div>
-    {% endif %}
-
-    <h4>Logradouro</h4>
+        <div class="col-12 col-md-7">
+            <h4>Logradouro</h4>
     
-    <form action="{% url 'logradouros:edit' logradouro.pk %}" method="POST">
-        {% csrf_token %}
-        
-        <div class="form-group row pt-2">
-            <div class="col">
-                <label class="">{{ form.bairro.label }}</label>
-                <input type="text" name="bairro" value="{{ logradouro.bairro }}" maxlength="100" class="form-control" id="id_bairro">
-            </div>
-            <div class="col">
-                <label class="">{{ form.endereco.label }}</label>
-                <input type="text" name="endereco" value="{{ logradouro.endereco }}" maxlength="200" class="form-control" id="id_endereco">
-            </div>
+            <form action="{% url 'logradouros:edit' logradouro.pk %}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col col-md-3">
+                        <label class="">{{ form.cep.label }}</label>
+                        <input type="text" name="cep" value="{{ logradouro.cep }}" maxlength="9" class="form-control" id="id_cep">
+                    </div>
+                    <div class="col col-md-4">
+                        <label class="">{{ form.bairro.label }}</label>
+                        <input type="text" name="bairro" value="{{ logradouro.bairro }}" maxlength="100" class="form-control" id="id_bairro">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-md-7">
+                        <label class="">{{ form.endereco.label }}</label>
+                        <input type="text" name="endereco" value="{{ logradouro.endereco }}" maxlength="200" class="form-control" id="id_endereco">
+                    </div>
+                </div>
+
+                <div class="form-row pt-2">
+                    <div class="col-2">
+                        <label class="">{{ form.numero.label }}</label>
+                        <input type="text" name="numero" value="{{ logradouro.numero }}" maxlength="6" class="form-control" id="id_numero">
+                    </div>
+                    
+                    <div class="col-5">
+                        <label class="">{{ form.complemento.label }}</label>
+                        <input type="text" name="complemento" value="{{ logradouro.complemento }}" id="id_complemento" class="form-control">
+                    </div>
+                    
+                </div>
+                
+                <div class="row pt-2">
+                    <div class="col">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        
-        <div class="form-group row pt-2">
-            <div class="col-2">
-                <label class="">{{ form.numero.label }}</label>
-                <input type="text" name="numero" value="{{ logradouro.numero }}" maxlength="6" class="form-control" id="id_numero">
-            </div>
-            <div class="col-3">
-                <label class="">{{ form.cep.label }}</label>
-                <input type="text" name="cep" value="{{ logradouro.cep }}" maxlength="9" class="form-control" id="id_cep">
-            </div>
-            <div class="col-5">
-                <label class="">{{ form.complemento.label }}</label>
-                <input type="text" name="complemento" id="id_complemento" class="form-control">
-            </div>
-            
-        </div>
-        
-        <div class="row pt-2">
-            <div class="col">
-                <button class="btn btn-primary" type="submit">Salvar</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

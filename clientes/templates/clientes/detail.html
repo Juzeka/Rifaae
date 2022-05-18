@@ -66,6 +66,8 @@
                                 <p class="card-text">{{ cliente.logradouro.bairro }}</p>
                                 <h6 class="card-subtitle mb-1 text-muted">Endereço</h6>
                                 <p class="card-text">{{ cliente.logradouro.endereco }}</p>
+                                <h6 class="card-subtitle mb-1 text-muted">Complemento</h6>
+                                <p class="card-text">{{ cliente.logradouro.complemento }}</p>
 
                             {% else %}
                                 {% include 'logradouros/add.html' %}

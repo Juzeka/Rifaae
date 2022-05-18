@@ -12,7 +12,7 @@ class Logradouro(models.Model):
         max_length=200,
         blank=False,
         null=False,
-        verbose_name='Logradouro'
+        verbose_name='Endereço'
     )
     numero = models.CharField(
         max_length=6,
