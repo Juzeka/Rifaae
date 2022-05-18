@@ -10,41 +10,75 @@
 <div class="container pt-4">
     <h4>Informações Pessoais</h4>
 
-    <div class="row pt-2">
-        <div class="col col-md-3">
+    {% if cliente %}
+        <div class="row pt-2">
+            <div class="col col-md-3">
 
-            <div class="row">
-                <div class="col pt-2">
-                    <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
-                    <label>{{ cliente.nome }}</label>
-                </div>
-                <div class="col pt-2">
-                    <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
-                    <label>{{ cliente.sobrenome }}</label>
-                </div>
-            </div>
-
-            <div class="row pb-4">
-                <div class="col pt-2">
-                    <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
-                    <span>{{ cliente.cpf }}</span>
+                <div class="row">
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
+                        <label>{{ cliente.nome }}</label>
+                    </div>
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
+                        <label>{{ cliente.sobrenome }}</label>
+                    </div>
                 </div>
 
-                <div class="col pt-2">
-                    <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
-                    <span>{{ cliente.celular }}</span>
+                <div class="row pb-4">
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
+                        <span>{{ cliente.cpf }}</span>
+                    </div>
+
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
+                        <span>{{ cliente.celular }}</span>
+                    </div>
+                    
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
+                        <span>{{ cliente.email }}</span>
+                    </div>
+                    
                 </div>
-                
-                <div class="col pt-2">
-                    <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
-                    <span>{{ cliente.email }}</span>
-                </div>
-                
             </div>
         </div>
-    </div>
+    {% elif organizador %}
+        <div class="row pt-2">
+            <div class="col col-md-3">
 
-    
+                <div class="row">
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
+                        <label>{{ organizador.nome }}</label>
+                    </div>
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
+                        <label>{{ organizador.sobrenome }}</label>
+                    </div>
+                </div>
+
+                <div class="row pb-4">
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
+                        <span>{{ organizador.cpf }}</span>
+                    </div>
+
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
+                        <span>{{ organizador.celular }}</span>
+                    </div>
+
+                    <div class="col pt-2">
+                        <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
+                        <span>{{ organizador.email }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
     <h4>Logradouro</h4>
     
