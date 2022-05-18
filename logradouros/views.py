@@ -56,9 +56,9 @@ class LogradouroUpdateView(CustomUpdateView):
     template_name = 'logradouros/edit.html'
 
     def get(self, request, *args, **kwargs):
-        if request.user.cliente:
+        if request.user.cliente.first():
             self.extra_context = {'cliente': request.user.cliente.first()}
-        elif request.user.organizador:
+        elif request.user.organizador.first():
             self.extra_context = {
                 'organizador': request.user.organizador.first()
             }
@@ -66,13 +66,13 @@ class LogradouroUpdateView(CustomUpdateView):
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        if self.request.user.cliente:
+        if self.request.user.cliente.first():
             self.success_url = '/clientes/detail/{}'.format(
                 self.request.user.cliente.first().pk
             )
-        elif self.request.user.logradouro:
-            self.success_url = '/clientes/detail/{}'.format(
-                self.request.user.logradouro.first().pk
+        elif self.request.user.organizador.first():
+            self.success_url = '/organizadores/detail/{}'.format(
+                self.request.user.organizador.first().pk
             )
         return super().form_valid(form)
 
