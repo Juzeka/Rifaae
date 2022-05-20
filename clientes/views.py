@@ -22,17 +22,9 @@ class ClienteHomeView(CustomHomeView):
         cliente = self.request.user.cliente.first()
         if cliente:
             self.extra_context = {
-                'cliente': cliente.pk,
+                'cliente': cliente,
                 'rifas': Rifa.objects.filter(ativo=True)
             }
-        # elif self.request.user.organizador:
-        #     organizador = self.request.user.organizador
-        #     self.extra_context = {
-        #         'organizador': organizador,
-        #         'rifas': Rifa.objects.filter(
-        #             organizador=self.request.user.organizador.pk
-        #         )
-        #     } colocar na view de organizadores
 
         return super().get_context_data(**kwargs)
 

@@ -1,0 +1,54 @@
+{% extends '_base.html'%}
+{% block title%}Painel administrativo{% endblock %}
+
+{% block nav %}
+    {% include 'menu.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row pt-4">
+            <div class="col">
+                <h2>Meus bilhetes</h2>
+            </div>
+        </div>
+    
+        <div class="row row-cols-1 row-cols-md-1 row-cols-xl-3 "><!-- row-cols já define os padroes das cols -->
+            {% for bilhete in bilhetes %}
+                <div class="col pt-4">
+                    <div class="card h-100">
+                        <div class="h4 card-header text-center">
+                            <a href="" class="card-link">#NTE{{ bilhete.numero }}975</a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Rifa</h6>
+                            <p class="card-text">{{ bilhete.rifa }}</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Pagamento</h6>
+                            {% if bilhete.pago %}
+                                <p class="card-text text-success">Aprovado</p>
+                            {% else %}
+                                <p class="card-text text-warning">Aguardando aprovação</p>
+                            {% endif %}
+
+                            <h6 class="card-subtitle mb-2 text-muted">Status</h6>
+                            {% if bilhete.premiado %}
+                                <p class="card-text text-success">Premiado</p>
+                            {% elif bilhete.rifa.ativo and not bilhete.premiado %}
+                                <p class="card-text text-warning">Aguardando sorteio</p>
+                            {% else %}
+                                <p class="card-text text-warning">Não Premiado</p>
+                            {% endif %}
+
+
+                        </div>
+                        <div class="card-footer">
+                            <small class="card-subtitle mb-2 text-muted">Data do sorteio: {{ bilhete.rifa.data_sorteio|date:'d/m/y' }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+    </div>
+{% endblock %}
