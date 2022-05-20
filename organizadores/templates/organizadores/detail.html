@@ -25,20 +25,20 @@
                         <div class="card-body">
                             <h5 class="card-title">
                                 Informações Pessoais
-                                <a href="{% url 'clientes:edit' cliente.pk %}" class="">
+                                <a href="{% url 'organizadores:edit' organizador.pk %}" class="">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                             </h5>
                             <h6 class="card-subtitle mb-1 text-muted">Nome</h6>
-                            <p class="card-text">{{ cliente.nome }}</p>
+                            <p class="card-text">{{ organizador.nome }}</p>
                             <h6 class="card-subtitle mb-1 text-muted">Sobrenome</h6>
-                            <p class="card-text">{{ cliente.sobrenome }}</p>
+                            <p class="card-text">{{ organizador.sobrenome }}</p>
                             <h6 class="card-subtitle mb-1 text-muted">CPF</h6>
-                            <p class="card-text">{{ cliente.cpf }}</p>
+                            <p class="card-text">{{ organizador.cpf }}</p>
                             <h6 class="card-subtitle mb-1 text-muted">E-mail</h6>
-                            <p class="card-text">{{ cliente.email }}</p>
+                            <p class="card-text">{{ organizador.email }}</p>
                             <h6 class="card-subtitle mb-1 text-muted">Celular</h6>
-                            <p class="card-text">{{ cliente.celular }}</p>
+                            <p class="card-text">{{ organizador.celular }}</p>
                         </div>
                     </div>
 
@@ -50,26 +50,26 @@
                         <div class="card-body">
                             <h5 class="card-title">
                                 Logradouro
-                                {% if cliente.logradouro %}
-                                <a href="{% url 'logradouros:edit' cliente.logradouro.pk %}" class="">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
+                                {% if organizador.logradouro %}
+                                    <a href="{% url 'logradouros:edit' organizador.logradouro.pk %}" class="">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
                                 {% endif %}
 
                             </h5>
 
-                            {% if cliente.logradouro %}
+                            {% if organizador.logradouro %}
 
                                 <h6 class="card-subtitle mb-1 text-muted">CEP</h6>
-                                <p class="card-text">{{ cliente.logradouro.cep }}</p>
+                                <p class="card-text">{{ organizador.logradouro.cep }}</p>
                                 <h6 class="card-subtitle mb-1 text-muted">Bairro</h6>
-                                <p class="card-text">{{ cliente.logradouro.bairro }}</p>
+                                <p class="card-text">{{ organizador.logradouro.bairro }}</p>
                                 <h6 class="card-subtitle mb-1 text-muted">Endereço</h6>
-                                <p class="card-text">{{ cliente.logradouro.endereco }}</p>
+                                <p class="card-text">{{ organizador.logradouro.endereco }}</p>
                                 <h6 class="card-subtitle mb-1 text-muted">Número</h6>
                                 <p class="card-text">{{ organizador.logradouro.numero }}</p>
                                 <h6 class="card-subtitle mb-1 text-muted">Complemento</h6>
-                                <p class="card-text">{{ cliente.logradouro.complemento }}</p>
+                                <p class="card-text">{{ organizador.logradouro.complemento }}</p>
 
                             {% else %}
                                 {% include 'logradouros/add.html' %}

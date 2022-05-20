@@ -1,0 +1,102 @@
+{% extends '_base.html'%}
+
+{% block nav %}
+    {% include 'menu.html' %}
+{% endblock %}
+
+{% block title %}Painel Administrativo{% endblock%}
+
+{% block body%}
+<div class="container pt-4">
+
+    <div class="row">
+        
+        <div class="col-12 col-md-6">
+            <h4>Informações Pessoais</h4>
+    
+            <form action="{% url 'organizadores:edit' organizador.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="usuario" value="{{ user.pk }}" hidden id="id_usuario">
+                <input type="text" name="logradouro" value="{{ organizador.logradouro.pk }}" hidden id="id_logradouro">
+                <input type="checkbox" name="ativo" id="id_ativo" hidden checked>
+                
+                <div class="form-row">
+                    <div class="col">
+                        <label class="">{{ form.nome.label }}</label>
+                        <input type="text" name="nome" value="{{ organizador.nome }}" maxlength="50" class="form-control" id="id_nome">
+                    </div>
+                    <div class="col">
+                        <label class="">{{ form.sobrenome.label }}</label>
+                        <input type="text" name="sobrenome" value="{{ organizador.sobrenome }}" maxlength="100" class="form-control" id="id_sobrenome">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="">{{ form.cpf.label }}</label>
+                        <input type="text" name="cpf" value="{{ organizador.cpf }}" maxlength="15" class="form-control" id="id_cpf">
+                    </div>
+                    <div class="col">
+                        <label class="">{{ form.celular.label }}</label>
+                        <input type="text" name="celular" value="{{ organizador.celular }}" maxlength="15" class="form-control" id="id_celular">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="">{{ form.email.label }}</label>
+                        <input type="email" name="email" value="{{ organizador.email }}" class="form-control" id="id_email">
+                    </div>
+                </div>
+
+                <div class="row pt-2">
+                    <div class="col">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Logradouro</h4>
+
+            <div class="row">
+                <div class="col col-md-6">
+
+                    <div class="row">
+                        <div class="col pt-2">
+                            <h6 class="card-subtitle mb-1 text-muted">CEP</h6>
+                            <label>{{ organizador.logradouro.cep }}</label>
+                        </div>
+                        <div class="col pt-2">
+                            <h6 class="card-subtitle mb-1 text-muted">Bairro</h6>
+                            <label>{{ organizador.logradouro.bairro }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col pt-2">
+                            <h6 class="card-subtitle mb-1 text-muted">Endereço</h6>
+                            <label>{{ organizador.logradouro.endereco }}</label>
+                        </div>
+
+                        <div class="col pt-2">
+                            <h6 class="card-subtitle mb-1 text-muted">Número</h6>
+                            <label>{{ organizador.logradouro.numero }}</label>
+                        </div>
+                        
+                        <div class="col pt-2">
+                            <h6 class="card-subtitle mb-1 text-muted">Complemento</h6>
+                        <label>{{ organizador.logradouro.complemento }}</label>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}

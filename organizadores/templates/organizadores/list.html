@@ -1,0 +1,67 @@
+{% include '_base.html'%}
+
+{% block title %}Clientes{% endblock%}
+
+{% block body%}
+<div class="container">
+    <div class="row">
+
+        <h3 class="col-10">Clientes</h3>
+        <a class="col-2 btn btn-primary" href="{% url 'clientes:add' %}">
+            <i class="bi bi-person-plus-fill"> Novo</i>
+        </a>
+
+    </div>
+    <div class="row">
+
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>SOBRENOME</th>
+                    <th>CPF</th>
+                    <th>E-MAIL</th>
+                    <th>CELULAR</th>
+                    <th>LOGRADOURO</th>
+                    <th>ATIVO</th>
+                    <th></th>
+                </thead>
+                <tbody>
+
+                    {% for cliente in clientes %}
+                    <tr>
+                        <td scope="row">{{ cliente.pk }}</td>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.sobrenome }}</td>
+                        <td>{{ cliente.cpf }}</td>
+                        <td>{{ cliente.email }}</td>
+                        <td>{{ cliente.celular }}</td>
+                        <td>{{ cliente.logradouro }}</td>
+                        <td>
+                            {% if cliente.ativo %}
+                                <i class="bi bi-check-circle-fill"></i>
+                            {% else %}
+                                <i class="bi bi-x-circle-fill"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn" href="{% url 'clientes:edit' cliente.pk %}">
+                                <i class="bi bi-pen"></i>
+                            </a>
+                            <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_deletar{{cliente.pk}}">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                            {% include 'clientes/delete.html' %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+{% endblock%}
