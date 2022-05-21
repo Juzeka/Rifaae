@@ -53,19 +53,16 @@ class RifaDetailView(CustomDetailView):
     def get_queryset(self):
         user = self.request.user
         organizador = user.organizador.first()
-        lista_cotas = []
 
         if organizador:
             rifa =Rifa.objects.filter(organizador=organizador.pk)
         elif self.kwargs.get('pk') and not organizador:
             rifa = Rifa.objects.filter(pk=self.kwargs.get('pk'))
 
-        for cota in range(0, (rifa.first().cotas+1)):
-            lista_cotas.append(cota)
-
+        instance = rifa.first()
         self.extra_context.update({
-            'cotas': lista_cotas,
-            'itens': rifa.first().itens.all()
+            'cotas': instance.cota.all(),
+            'itens': instance.itens.all()
         })
 
         return rifa

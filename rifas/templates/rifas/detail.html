@@ -9,76 +9,84 @@
 {% block body %}
 
 <div class="container">
+    {{ rifa.cota.bilhete }}
 
-    
     <div class="row">
-        <div class="col-12 col-md-12 pt-4">
-            <h3>Rifa</h3>
-        </div>
 
-        <div class="col-12 col-md-7 pt-4">
-            <img src="https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png" class="card-img-top" alt="...">
-        </div>
+        <div class="col-12 col-md-12">
+            <div class="row">
+                <div class="col-12 col-md-12 pt-4">
+                    <h2>{{ rifa.titulo }}
+                        {% if organizador %}
+                            <a href="" class="">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        {% endif %}
+                    </h2>
+                </div>
 
-        <div class="col">
-            <div class="row row-cols-1 row-cols-md-1 row-cols-xl-1">
-                <div class="col pt-4">
+                <div class="col">
+                    <h6><i class="bi bi-trophy"> Prêmios: 
+                        {% for item in itens %}
+                            {{ item.quantidade }}-{{ item.nome }}
+                        {% endfor %}
+                    </i></h6>
+                </div>
 
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                {{ rifa.titulo }}
-                                {% if organizador %}
-                                    <a href="" class="">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                {% endif %}
-                            </h5>
-                            <h6 class="card-subtitle mb-1 text-muted">Descrição</h6>
-                            <p class="card-text">{{ rifa.descricao }}</p>
-                            <h6 class="card-subtitle mb-1 text-muted">Quantidade de Cotas</h6>
-                            <p class="card-text">{{ rifa.cotas }}</p>
-                            <h6 class="card-subtitle mb-1 text-muted">Valor da Cota</h6>
-                            <p class="card-text">{{ rifa.valor_cota }}</p>
-                            <h6 class="card-subtitle mb-1 text-muted">Organizador</h6>
-                            <p class="card-text">{{ rifa.organizador }}</p>
-                            <h6 class="card-subtitle mb-1 text-muted">Data Sorteio</h6>
-                            <p class="card-text">{{ rifa.data_sorteio }}</p>
-                            <h6 class="card-subtitle mb-1 text-muted">Regulamento</h6>
-                            <p class="card-text">{{ rifa.regulamento }}</p>
-                        </div>
-                    </div>
+                <div class="col-12">
+                    <p class="h6 text">
+                        <i class="bi bi-calendar3"> {{ rifa.data_sorteio|date:'d/m/y' }} |</i> 
+                        <i class="bi bi-cash-stack"> {{ rifa.valor_cota }} Reais |</i> 
+                        <i class="bi bi-person"> {{ rifa.organizador.get_nome_completo }}</i> 
+                    </p>
+                </div>
 
+                <div class="col-12">
+                    <p class="h4 text">
+                        {{ rifa.descricao }}
+                    </p>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-md-12  pt-4">
-            <h3>Prêmios</h3>
-
-            <div class="row row-cols-1 row-cols-md-3 row-cols-xl-4">
-                {% for item in itens %}
-                    <div class="col pt-4">
-                        <div class="card h-100">
-                            <div class="card-header">{{ item.nome }}</div>
-                            <div class="card-body">
-                                <p class="card-text">Quantidade: {{ item.quantidade }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+        <div class="col-12 col-md-12 pt-1">
+            <img src="https://brinox.vteximg.com.br/arquivos/ids/262227-1200-800/Vermelho-Brinox.jpg" class="card-img-top" alt="...">
         </div>
 
         <div class="col-12 col-md-12 pt-4">
             <h3>Cotas</h3>
+            <h5>Status</h6>
+            <h6>
+                <span class="badge p-2 badge-secondary">Disponiveis</span>
+                <span class="badge p-2 badge-danger">Reservada</span>
+                <span class="badge p-2 badge-success">Paga</span>
+            </h6>
 
-            <div class="text-center pt-4 pb-4">
+            <div class="text-center pt-2 pb-4">
                 {% for cota in cotas %}
-                    <a class="btn btn-light mt-1 mb-1" value="{{cota}}" href=""> {{cota}} </a> 
+                    {% if cota.reservada %}
+                        <a class="btn btn-danger mt-1 mb-1 disabled" role="button" aria-disabled="true"> {{ cota.valor }} </a> 
+                    {% elif cota.paga %}
+                        <a class="btn btn-success mt-1 mb-1 disabled" role="button" aria-disabled="true"> {{ cota.valor }} </a> 
+                    {% else %}
+                        <a class="btn btn-secondary mt-1 mb-1 cota" id="{{cota.valor}}"> {{ cota.valor }} </a>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block script %}
+    <script>
+        var teste = []
+
+        $('.cota').on('click', function() {
+            var id = `#${this.innerText}`
+            teste.push(this.innerText)
+
+            $(id).addClass('disabled')
+            console.log(teste)
+        })
+    </script>
 {% endblock %}

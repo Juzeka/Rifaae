@@ -45,6 +45,6 @@ class Cota(models.Model):
 
 
     class Meta:
-        ordering = ['pk']
+        ordering = ['valor']
         verbose_name = 'Cota'
         verbose_name_plural = 'Cotas'
