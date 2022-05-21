@@ -17,13 +17,14 @@ class RifaListView(CustomListView):
     model = Rifa
     template_name = TEMPLATE_NAME_HOME
     context_object_name = CONTEXT_OBJECT_NAME_PLURAL
+    extra_context = {}
 
     def get_context_data(self, **kwargs):
         user = self.request.user
         organizador = user.organizador.first()
 
         if organizador:
-            self.extra_context = {'organizador': organizador}
+            self.extra_context.update({'organizador': organizador})
 
         return super().get_context_data(**kwargs)
 
@@ -63,7 +64,8 @@ class RifaDetailView(CustomDetailView):
             lista_cotas.append(cota)
 
         self.extra_context.update({
-            'cotas': lista_cotas, 'itens': rifa.first().itens.all()
+            'cotas': lista_cotas,
+            'itens': rifa.first().itens.all()
         })
 
         return rifa
@@ -74,9 +76,9 @@ class RifaDetailView(CustomDetailView):
         organizador = user.organizador.first()
 
         if cliente:
-            self.extra_context.update({'cliente': cliente},)
+            self.extra_context.update({'cliente': cliente})
         elif organizador:
-            self.extra_context.update({'organizador': organizador},)
+            self.extra_context.update({'organizador': organizador})
 
         return super().get_context_data(**kwargs)
 
