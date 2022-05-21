@@ -22,7 +22,7 @@ class Item(models.Model):
     rifa = models.ForeignKey(
         'rifas.Rifa',
         on_delete=models.CASCADE,
-        related_name='rifa',
+        related_name='itens',
         verbose_name='Rifa'
     )
     # img colocar dps

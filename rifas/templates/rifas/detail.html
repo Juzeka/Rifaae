@@ -1,0 +1,85 @@
+{% extends '_base.html'%}
+
+{% block title %}Painel Administrativo{% endblock%}
+
+{% block nav %}
+    {% include 'menu.html' %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    
+    <div class="row">
+        <div class="col-12 col-md-12 pt-4">
+            <h3>Rifa</h3>
+        </div>
+
+        <div class="col-12 col-md-7 pt-4">
+            <img src="https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png" class="card-img-top" alt="...">
+        </div>
+
+        <div class="col">
+            <div class="row row-cols-1 row-cols-md-1 row-cols-xl-1">
+                <div class="col pt-4">
+
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ rifa.titulo }}
+                                {% if organizador %}
+                                    <a href="" class="">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                {% endif %}
+                            </h5>
+                            <h6 class="card-subtitle mb-1 text-muted">Descrição</h6>
+                            <p class="card-text">{{ rifa.descricao }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">Quantidade de Cotas</h6>
+                            <p class="card-text">{{ rifa.cotas }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">Valor da Cota</h6>
+                            <p class="card-text">{{ rifa.valor_cota }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">Organizador</h6>
+                            <p class="card-text">{{ rifa.organizador }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">Data Sorteio</h6>
+                            <p class="card-text">{{ rifa.data_sorteio }}</p>
+                            <h6 class="card-subtitle mb-1 text-muted">Regulamento</h6>
+                            <p class="card-text">{{ rifa.regulamento }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-12  pt-4">
+            <h3>Prêmios</h3>
+
+            <div class="row row-cols-1 row-cols-md-3 row-cols-xl-4">
+                {% for item in itens %}
+                    <div class="col pt-4">
+                        <div class="card h-100">
+                            <div class="card-header">{{ item.nome }}</div>
+                            <div class="card-body">
+                                <p class="card-text">Quantidade: {{ item.quantidade }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                     
+            </div>
+        </div>
+
+        <div class="col-12 col-md-12 pt-4">
+            <h3>Cotas</h3>
+
+            <div class="text-center pt-4 pb-4">
+                {% for cota in cotas %}
+                    <a class="btn btn-light mt-1 mb-1" value="{{cota}}" href=""> {{cota}} </a> 
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

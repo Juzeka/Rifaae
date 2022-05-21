@@ -4,6 +4,7 @@ from .views import (
     ClienteCreateView, ClienteUpdateView,
     ClienteDeleteView, ClienteDetailView
 )
+from rifas.views import RifaDetailView
 
 
 app_name = 'clientes'
@@ -15,4 +16,5 @@ urlpatterns = [
      path('detail/<int:pk>', ClienteDetailView.as_view(), name='detail'),
      path('edit/<int:pk>', ClienteUpdateView.as_view(), name = 'edit'),
      path('delete/<int:pk>', ClienteDeleteView.as_view(), name = 'delete'),
+     path('participar/<int:pk>', RifaDetailView.as_view(), name='participar'),
 ]
