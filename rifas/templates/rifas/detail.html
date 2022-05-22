@@ -69,24 +69,70 @@
                     {% elif cota.paga %}
                         <a class="btn btn-success mt-1 mb-1 disabled" role="button" aria-disabled="true"> {{ cota.valor }} </a> 
                     {% else %}
-                        <a class="btn btn-secondary mt-1 mb-1 cota" id="{{cota.valor}}"> {{ cota.valor }} </a>
+                        <a class="btn btn-secondary mt-1 mb-1 cota" data-toggle="button" aria-pressed="false" id="{{cota.valor}}"> {{ cota.valor }} </a>
                     {% endif %}
                 {% endfor %}
             </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-cente">
+        <div class="col-12 col-md-12 pt-2 pb-4">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-md-12 pt-1">
+                        <div class="row r">
+                            <div class="col">
+                                <label>Cotas</label>
+                                <input name="cotas_selecionadas" id="cotas_selecionadas" class="form-control" readonly>
+                            </div>
+                            <div class="col">
+                                <label>Valor Total</label>
+                                <input type="number" name="valor_total" id="valor_total" class="form-control" readonly>
+                            </div>
+                            <div class="col-1 align-self-end">
+                                <button type="submit" class="btn btn-primary ">Comprar</button>
+                            </div>
+                        </div>
+                        <div class="col-md-1 pt-1">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 {% endblock %}
 {% block script %}
     <script>
-        var teste = []
+        $('.form-row').hide()
+        var lista_cotas = []
+        var valor = '{{ rifa.valor_cota }}'
 
+        console.log(valor)
         $('.cota').on('click', function() {
-            var id = `#${this.innerText}`
-            teste.push(this.innerText)
 
-            $(id).addClass('disabled')
-            console.log(teste)
+            if (!lista_cotas.includes(this.innerText)){
+                lista_cotas.push(this.innerText)
+            } else {
+                lista_cotas = lista_cotas.filter((cota) => { 
+                    if(cota != this.innerText) {
+                        return cota
+                    }
+                })
+            }
+
+            if (lista_cotas.length >= 1) {
+                $('.form-row').show()
+            } else {
+                $('.form-row').hide()
+            }
+
+            $('#cotas_selecionadas').val(lista_cotas)
+            $('#valor_total').val(parseFloat(valor) * lista_cotas.length)
+
+            console.log(lista_cotas)
         })
     </script>
 {% endblock %}
