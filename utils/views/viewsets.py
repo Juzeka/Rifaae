@@ -8,7 +8,7 @@ from django.views.generic import (
 )
 
 
-class CustomHomeView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
+class PermissionGroups(GroupRequiredMixin):
     def check_membership(self, groups):
         permission = super().check_membership(groups)
 
@@ -16,59 +16,26 @@ class CustomHomeView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
             raise PermissionDenied()
 
         return permission
+
+class CustomHomeView(LoginRequiredMixin, PermissionGroups, TemplateView):
     ...
 
 
-class CustomListView(LoginRequiredMixin, GroupRequiredMixin, ListView):
-    def check_membership(self, groups):
-        permission = super().check_membership(groups)
-
-        if not permission:
-            raise PermissionDenied()
-
-        return permission
+class CustomListView(LoginRequiredMixin, PermissionGroups, ListView):
     ...
 
 
-class CustomCreateView(LoginRequiredMixin, GroupRequiredMixin, CreateView):
-    def check_membership(self, groups):
-        permission = super().check_membership(groups)
-
-        if not permission:
-            raise PermissionDenied()
-
-        return permission
+class CustomCreateView(LoginRequiredMixin, PermissionGroups, CreateView):
     ...
 
 
-class CustomUpdateView(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
-    def check_membership(self, groups):
-        permission = super().check_membership(groups)
-
-        if not permission:
-            raise PermissionDenied()
-
-        return permission
+class CustomUpdateView(LoginRequiredMixin, PermissionGroups, UpdateView):
     ...
 
 
-class CustomDetailView(LoginRequiredMixin, GroupRequiredMixin, DetailView):
-    def check_membership(self, groups):
-        permission = super().check_membership(groups)
-
-        if not permission:
-            raise PermissionDenied()
-
-        return permission
+class CustomDetailView(LoginRequiredMixin, PermissionGroups, DetailView):
     ...
 
 
-class CustomDeleteView(LoginRequiredMixin, GroupRequiredMixin, DeleteView):
-    def check_membership(self, groups):
-        permission = super().check_membership(groups)
-
-        if not permission:
-            raise PermissionDenied()
-
-        return permission
+class CustomDeleteView(LoginRequiredMixin, PermissionGroups, DeleteView):
     ...
