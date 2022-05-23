@@ -12,9 +12,11 @@ CONTEXT_OBJECT_NAME = 'organizador'
 CONTEXT_OBJECT_NAME_PLURAL = 'organizadores'
 TEMPLATE_NAME_HOME = 'organizadores/list.html'
 SUCCESS_URL_HOME = reverse_lazy('organizadores:home')
+GROUPS_PERMISSIONS = [u"organizador", u'administrador']
 
 
 class OrganizadorHomeView(CustomHomeView):
+    group_required = GROUPS_PERMISSIONS
     template_name = 'organizadores/home.html'
     extra_context = []
 
@@ -32,12 +34,14 @@ class OrganizadorHomeView(CustomHomeView):
 
 
 class OrganizadorListView(CustomListView):
+    group_required = GROUPS_PERMISSIONS
     model = Organizador
     template_name = TEMPLATE_NAME_HOME
     context_object_name = CONTEXT_OBJECT_NAME_PLURAL
 
 
 class OrganizadorCreateView(CustomCreateView):
+    group_required = GROUPS_PERMISSIONS
     model = Organizador
     form_class = OrganizadorForm
     template_name = 'organizadores/add.html'
@@ -45,6 +49,7 @@ class OrganizadorCreateView(CustomCreateView):
 
 
 class OrganizadorUpdateView(CustomUpdateView):
+    group_required = GROUPS_PERMISSIONS
     model = Organizador
     form_class = OrganizadorForm
     context_object_name = CONTEXT_OBJECT_NAME
@@ -60,13 +65,18 @@ class OrganizadorUpdateView(CustomUpdateView):
 
 
 class OrganizadorDetailView(CustomDetailView):
+    group_required = GROUPS_PERMISSIONS
     model = Organizador
     form_class = OrganizadorForm
     context_object_name = CONTEXT_OBJECT_NAME
     template_name = 'organizadores/detail.html'
 
+    def get_queryset(self):
+        return Organizador.objects.filter(usuario=self.request.user.pk)
+
 
 class OrganizadorDeleteView(CustomDeleteView):
+    group_required = u'administrador'
     model = Organizador
     fields = '__all__'
     context_object_name = CONTEXT_OBJECT_NAME

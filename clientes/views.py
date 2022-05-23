@@ -12,9 +12,11 @@ CONTEXT_OBJECT_NAME = 'cliente'
 CONTEXT_OBJECT_NAME_PLURAL = 'clientes'
 TEMPLATE_NAME_HOME = 'clientes/list.html'
 SUCCESS_URL_HOME = reverse_lazy('clientes:home')
+GROUPS_PERMISSIONS = [u"clientes", u'administrador']
 
 
 class ClienteHomeView(CustomHomeView):
+    group_required = GROUPS_PERMISSIONS
     template_name = 'clientes/home.html'
     extra_context = []
 
@@ -30,12 +32,15 @@ class ClienteHomeView(CustomHomeView):
 
 
 class ClienteListView(CustomListView):
+    group_required = GROUPS_PERMISSIONS
+    raise_exception = True
     model = Cliente
     template_name = TEMPLATE_NAME_HOME
     context_object_name = CONTEXT_OBJECT_NAME_PLURAL
 
 
 class ClienteCreateView(CustomCreateView):
+    group_required = GROUPS_PERMISSIONS
     model = Cliente
     form_class = ClienteForm
     template_name = 'clientes/add.html'
@@ -43,6 +48,7 @@ class ClienteCreateView(CustomCreateView):
 
 
 class ClienteUpdateView(CustomUpdateView):
+    group_required = GROUPS_PERMISSIONS
     model = Cliente
     form_class = ClienteForm
     context_object_name = CONTEXT_OBJECT_NAME
@@ -58,6 +64,7 @@ class ClienteUpdateView(CustomUpdateView):
 
 
 class ClienteDetailView(CustomDetailView):
+    group_required = GROUPS_PERMISSIONS
     model = Cliente
     form_class = ClienteForm
     context_object_name = CONTEXT_OBJECT_NAME
@@ -65,6 +72,7 @@ class ClienteDetailView(CustomDetailView):
 
 
 class ClienteDeleteView(CustomDeleteView):
+    group_required = u'administrador'
     model = Cliente
     fields = '__all__'
     context_object_name = CONTEXT_OBJECT_NAME

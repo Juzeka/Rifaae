@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from rolepermissions.mixins import HasPermissionsMixin
+from braces.views import GroupRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.views.generic import (
     ListView, CreateView,
     UpdateView, DeleteView,
@@ -7,19 +8,67 @@ from django.views.generic import (
 )
 
 
-class CustomHomeView(LoginRequiredMixin, HasPermissionsMixin, TemplateView): ...
+class CustomHomeView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
+    def check_membership(self, groups):
+        permission = super().check_membership(groups)
+
+        if not permission:
+            raise PermissionDenied()
+
+        return permission
+    ...
 
 
-class CustomListView(LoginRequiredMixin, HasPermissionsMixin, ListView): ...
+class CustomListView(LoginRequiredMixin, GroupRequiredMixin, ListView):
+    def check_membership(self, groups):
+        permission = super().check_membership(groups)
+
+        if not permission:
+            raise PermissionDenied()
+
+        return permission
+    ...
 
 
-class CustomCreateView(LoginRequiredMixin, HasPermissionsMixin, CreateView): ...
+class CustomCreateView(LoginRequiredMixin, GroupRequiredMixin, CreateView):
+    def check_membership(self, groups):
+        permission = super().check_membership(groups)
+
+        if not permission:
+            raise PermissionDenied()
+
+        return permission
+    ...
 
 
-class CustomUpdateView(LoginRequiredMixin, HasPermissionsMixin, UpdateView): ...
+class CustomUpdateView(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
+    def check_membership(self, groups):
+        permission = super().check_membership(groups)
+
+        if not permission:
+            raise PermissionDenied()
+
+        return permission
+    ...
 
 
-class CustomDetailView(LoginRequiredMixin, HasPermissionsMixin, DetailView): ...
+class CustomDetailView(LoginRequiredMixin, GroupRequiredMixin, DetailView):
+    def check_membership(self, groups):
+        permission = super().check_membership(groups)
+
+        if not permission:
+            raise PermissionDenied()
+
+        return permission
+    ...
 
 
-class CustomDeleteView(LoginRequiredMixin, HasPermissionsMixin, DeleteView): ...
+class CustomDeleteView(LoginRequiredMixin, GroupRequiredMixin, DeleteView):
+    def check_membership(self, groups):
+        permission = super().check_membership(groups)
+
+        if not permission:
+            raise PermissionDenied()
+
+        return permission
+    ...
