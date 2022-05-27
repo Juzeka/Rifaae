@@ -15,10 +15,6 @@ TEMPLATE_NAME_HOME = 'logradouros/list.html'
 SUCCESS_URL_HOME = reverse_lazy('logradouros:home')
 
 
-class LogradouroHomeView(CustomHomeView):
-    template_name = 'logradouros/home.html'
-
-
 class LogradouroListView(CustomListView):
     model = Logradouro
     template_name = TEMPLATE_NAME_HOME
@@ -29,22 +25,29 @@ class LogradouroCreateView(CustomCreateView):
     model = Logradouro
     form_class = LogradouroForm
     template_name = 'logradouros/add.html'
-    success_url = SUCCESS_URL_HOME
 
     def form_valid(self, form):
         user = self.request.user
-        super().form_valid(form)
 
-        if user.cliente and not user.cliente.first().logradouro:
+        if user.cliente.first():
             cliente = Cliente.objects.get(pk=user.cliente.first().pk)
-            cliente.logradouro = self.object
-            cliente.save()
-
             self.success_url = '/clientes/detail/{}'.format(
                 cliente.pk
             )
-        elif user.organizador:
-            ...
+
+            super().form_valid(form)
+            cliente.logradouro = self.object
+            cliente.save()
+
+        else:
+            organizador = Organizador.objects.get(pk=user.organizador.first().pk)
+            self.success_url = '/organizadores/detail/{}'.format(
+                organizador.pk
+            )
+
+            super().form_valid(form)
+            organizador.logradouro = self.object
+            organizador.save()
 
         return super().form_valid(form)
 

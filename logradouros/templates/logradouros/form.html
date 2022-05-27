@@ -13,7 +13,13 @@
                 </button>
             </div>
 
-            <form action="{% url 'logradouros:add' %}" method="POST">
+            <form action="
+                {% if cliente %}
+                    {% url 'clientes:add_logradouro' %}
+                {% else %}
+                    {% url 'organizadores:add_logradouro' %}
+                {% endif %}
+            " method="POST">
                 <div class="modal-body">
 
                     {% csrf_token %}

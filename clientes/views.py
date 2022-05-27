@@ -22,6 +22,7 @@ class ClienteHomeView(CustomHomeView):
 
     def get_context_data(self, **kwargs):
         cliente = self.request.user.cliente.first()
+
         if cliente:
             self.extra_context = {
                 'cliente': cliente,

@@ -51,7 +51,7 @@
                             <h5 class="card-title">
                                 Logradouro
                                 {% if cliente.logradouro %}
-                                <a href="{% url 'logradouros:edit' cliente.logradouro.pk %}" class="">
+                                <a href="{% url 'clientes:edit_logradouro' cliente.logradouro.pk %}" class="">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 {% endif %}

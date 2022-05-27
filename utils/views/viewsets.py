@@ -8,6 +8,9 @@ from django.views.generic import (
 )
 
 
+GROUPS_PERMISSIONS_ALL = [u'clientes', u'organizador', u'administrador']
+
+
 class PermissionGroups(GroupRequiredMixin):
     def check_membership(self, groups):
         permission = super().check_membership(groups)
@@ -18,24 +21,29 @@ class PermissionGroups(GroupRequiredMixin):
         return permission
 
 class CustomHomeView(LoginRequiredMixin, PermissionGroups, TemplateView):
-    ...
+    group_required = GROUPS_PERMISSIONS_ALL
 
 
 class CustomListView(LoginRequiredMixin, PermissionGroups, ListView):
-    ...
+    group_required = GROUPS_PERMISSIONS_ALL
+
 
 
 class CustomCreateView(LoginRequiredMixin, PermissionGroups, CreateView):
-    ...
+    group_required = GROUPS_PERMISSIONS_ALL
+
 
 
 class CustomUpdateView(LoginRequiredMixin, PermissionGroups, UpdateView):
-    ...
+    group_required = GROUPS_PERMISSIONS_ALL
+
 
 
 class CustomDetailView(LoginRequiredMixin, PermissionGroups, DetailView):
-    ...
+    group_required = GROUPS_PERMISSIONS_ALL
+
 
 
 class CustomDeleteView(LoginRequiredMixin, PermissionGroups, DeleteView):
-    ...
+    group_required = u'administrador'
+
