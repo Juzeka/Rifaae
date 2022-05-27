@@ -59,7 +59,7 @@ class OrganizadorUpdateView(CustomUpdateView):
         return Organizador.objects.filter(ativo=True)
 
     def form_valid(self, form):
-        self.success_url = '/organizadores/detail/{}'.format(self.get_object().pk)
+        self.success_url = f'/organizadores/detail/{self.get_object().pk}'
 
         return super().form_valid(form)
 
